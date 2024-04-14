@@ -30,8 +30,10 @@ def save_data(data, path: pathlib.PosixPath = PATH_TO_OUTPUT_DATA):
 def main():
     texts = load_data()
     texts = [i.lower() for i in texts]
-
-    weight_dir_path = hf_hub_download(repo_id="Yagorka/sentiment_finance_ru", filename="best_model_state.bin", local_dir='weight_dir')
+    if os.path.exists(os.path.join('weight_dir', "best_model_state.bin")):
+        weight_dir_path = os.path.join('weight_dir', "best_model_state.bin")
+    else:
+        weight_dir_path = hf_hub_download(repo_id="Yagorka/sentiment_finance_ru", filename="best_model_state.bin", local_dir='weight_dir')
     with open(os.path.join('data', 'saved_words.pkl'), 'rb') as f:
         loaded_id_to_names = pickle.load(f)
 
