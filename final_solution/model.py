@@ -66,7 +66,7 @@ def evaluate(model, strs, companies, id_to_words):
 
     test = MyDataset(strs, companies, id_to_words)
 
-    test_dataloader = torch.utils.data.DataLoader(test, batch_size=20)
+    test_dataloader = torch.utils.data.DataLoader(test, batch_size=40)
 
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda" if use_cuda else "cpu")
